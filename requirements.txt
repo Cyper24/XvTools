@@ -1,5 +1,4 @@
 bs4==0.0.1
-pandas==1.4.2
+pandas
 pytube
 pyperclip
-requests
