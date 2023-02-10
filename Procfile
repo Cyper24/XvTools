@@ -1,1 +1,1 @@
-web: sh setup.sh && streamlit run xvtools.py
+web: streamlit run xvtools.py
