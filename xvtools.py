@@ -9,8 +9,7 @@ st.set_page_config(
     page_title="XvTools",
     )
 
-list1 = []
-list2 = []
+
 
 with st.container():
     col1, col2 = st.columns(2)
@@ -102,14 +101,15 @@ elif option =="T0KP3D $CRAPPER":
     st.text('$/$ Made with ❤ By Cyper24 $/$')
 
 elif option =="ExTracTor":
+    list1 = []
+    list2 = []
     col1, col2, col3 = st.columns(3)
     with col2:
         st.text("$/$ AnimeExTracTor $/$")
 
     cari_an = st.text_input('What Do You want?', ' ')
-    main_url = "https://samehadaku.win/?s={}".format(cari_an)
-
-    try:         
+    try:   
+        main_url = "https://samehadaku.win/?s={}".format(cari_an)
         res_search = requests.get(main_url)
         soup_search = BeautifulSoup(res_search.content,'lxml')
         list_search = soup_search.find_all("div", class_='animepost')
