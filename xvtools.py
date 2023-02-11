@@ -107,8 +107,8 @@ elif option =="ExTracTor":
     with col2:
         st.text("$/$ AnimeExTracTor $/$")
 
-    cari_an = st.text_input('What Do You want?', ' ')
-    try:   
+    cari_an = st.text_input('What Do You want?', '')
+    try:
         main_url = "https://samehadaku.win/?s={}".format(cari_an)
         res_search = requests.get(main_url)
         soup_search = BeautifulSoup(res_search.content,'lxml')
