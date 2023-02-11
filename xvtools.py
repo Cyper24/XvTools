@@ -101,6 +101,10 @@ elif option =="T0KP3D $CRAPPER":
     st.text('$/$ Made with ❤ By Cyper24 $/$')
 
 elif option =="ExTracTor":
+    header = {
+    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36",
+    "content-type": "text/html; charset=utf-8"
+    }
     list1 = []
     list2 = []
     col1, col2, col3 = st.columns(3)
@@ -110,7 +114,7 @@ elif option =="ExTracTor":
     cari_an = st.text_input('What Do You want?', '')
     try:
         main_url = "https://samehadaku.win/?s={}".format(cari_an)
-        res_search = requests.get(main_url)
+        res_search = requests.get(main_url,headers=header)
         soup_search = BeautifulSoup(res_search.content,'lxml')
         list_search = soup_search.find_all("div", class_='animepost')
         for result in list_search:
