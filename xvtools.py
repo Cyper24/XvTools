@@ -4,6 +4,9 @@ import pandas as pd
 import requests
 import pyperclip
 from bs4 import BeautifulSoup 
+import img2pdf
+from PIL import Image
+import pypdfium2 as pdfium
 
 st.set_page_config(
     page_title="XvTools",
@@ -22,7 +25,7 @@ with st.container():
     with col2:
         option = st.selectbox(
         'Select Tool',
-        ('YouTube Keyword', 'T0KP3D $CRAPPER', 'ExTracTor'))
+        ('YouTube Keyword', 'T0KP3D $CRAPPER', 'ExTracTor', 'JpgToPdf', 'PdfToJpg'))
 
     st.text(" ")
     st.text("$=================================================================================$")
@@ -163,4 +166,44 @@ elif option =="ExTracTor":
 
     except:
         st.text(" ")
+    st.text('$/$ Made with ❤ By Cyper24 $/$')
+
+elif option =="JpgToPdf":
+    
+    with col6:
+        st.text('$/$ JpgToPdf $/$')
+    uploaded_file_jpg = st.file_uploader("Upload your file here...", type=['png', 'jpeg', 'jpg'])
+    if uploaded_file_jpg is not None:
+        st.image(uploaded_file_jpg)
+        fn = uploaded_file_jpg.name
+        pdf_bytes = img2pdf.convert(uploaded_file_jpg)
+        btn = st.download_button(
+                    label="Download Pdf",
+                    data=pdf_bytes,
+                    file_name=f"{fn}.pdf",
+                    mime="application/pdf"
+                )
+    
+    st.text('$/$ Made with ❤ By Cyper24 $/$')
+
+elif option =="PdfToJpg":
+    
+    with col6:
+        st.text('$/$ PdfToJpg $/$')
+    uploaded_file_pdf = st.file_uploader("Upload your file here...", type=['pdf'])
+    if uploaded_file_pdf is not None:
+        pdf = pdfium.PdfDocument(uploaded_file_pdf)
+        fn = uploaded_file_pdf.name
+        for i in range(len(pdf)):
+            page = pdf[i]
+            image = page.render(scale=1.45).to_pil()
+            st.image(image)
+            image.save(f"{fn}.jpg")
+            with open(f"{fn}.jpg", "rb") as file:
+                            btn = st.download_button(
+                            label="Download image",
+                            data=file,
+                            file_name=f"*{fn}.jpg",
+                            mime="image/jpg"
+                            )
     st.text('$/$ Made with ❤ By Cyper24 $/$')
